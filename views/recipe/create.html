@@ -1,0 +1,124 @@
+<div ng-controller="createRecipeController" class="ng-scope">
+	<ng-include src="'views/navbar.html'"></ng-include>
+	
+	<div class="col-md-6 col-md-offset-3">
+		<form name="createRecipeForm" ng-submit="createRecipeForm.$valid && createRecipe.submit(createRecipeForm)">
+		
+			<div class="form-group col-md-6">
+				<input type="text" required class="form-control" ng-model="title" id="title" name="title" placeholder="Title">
+			</div>
+			
+			<div class="form-group col-md-12">
+				<div class="row">
+					<div class="col-md-3">
+						<label for="prepTime" class="control-label">Prep Time</label>
+						<timepicker ng-model="prepTime" id="prepTime" name="prepTime" hour-step="prephstep" minute-step="prepmstep" show-meridian="false"></timepicker>
+					</div>
+					
+					<div class="col-md-3">
+						<label for="cookTime" class="control-label">Cooking Time</label>
+						<timepicker ng-model="cookTime" id="cookTime" name="cookTime" hour-step="cookhstep" minute-step="cookmstep" show-meridian="false"></timepicker>
+					</div>
+										
+				</div>
+			</div>
+			
+			<div class="form-group col-md-12">
+				<div class="row">
+					<div class="col-md-3">
+						<input type="number" class="form-control" min="0" ng-model="serves" id="serves" name="serves" ng-pattern="/^[0-9]{1,7}$/" valid-number placeholder="Serves">
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group col-md-12">
+				<tags-input ng-model="tags" add-on-space="true" placeholder="Tags">
+					<auto-complete source="loadTags($query)"></auto-complete>
+				</tags-input>
+			</div>
+			
+			
+			<div class="form-group col-md-12">
+				<div class="row">
+					<fieldset data-ng-repeat="ingredient in ingredients">
+						<div class="form-group">
+							<div class="col-md-2">
+								<input type="text" class="form-control" ng-model="ingredient.amount" name="" placeholder="Amount">
+							</div>
+						
+							<div class="col-md-4">
+								<input type="text" class="form-control" ng-model="ingredient.unit" name="" placeholder="Unit">
+							</div>
+					
+							<div class="col-md-4">
+								<input type="text" class="form-control" ng-model="ingredient.ingredient" name="" placeholder="Ingredient">
+							</div>
+						
+							<div class="col-md-2">
+								<button type="button" class="form-control remove" id="removeIngredient" name= "removeIngredient" ng-show="$last" ng-click="removeIngredient()">Remove</button>
+							</div>
+						</div>
+					</fieldset>
+					
+					<div class="form-group col-md-3">
+						<button type="button" class="form-control addfields" id="addIngredient" name="addIngredient" ng-click="addNewIngredient()">Add Ingredient</button>		
+					</div>
+				</div>
+			</div>	
+			
+			<div class="form-group col-md-12">
+				<div class="row">
+					<fieldset data-ng-repeat="step in steps">
+						<div class="form-group">
+					
+							<div class="col-md-10">
+								<textarea class="form-control" ng-model="step.description" name="" placeholder="Step"></textarea>
+							</div>
+						
+							<div class="col-md-2">
+								<button type="button" class="form-control remove" id="removeStep" name= "removeStep" ng-show="$last" ng-click="removeStep()">Remove</button>
+							</div>
+						</div>
+					</fieldset>
+					
+					<div class="form-group col-md-2">
+						<button type="button" class="form-control addfields" id="addStep" name="addStep" ng-click="addNewStep()">Add Step</button>		
+					</div>
+				</div>
+			</div>	
+			
+			<div class="form-group col-md-12">
+				<div class="row">
+					<div ngf-drop 
+						ngf-select 
+						ng-model="files" 
+						class="drop-box" 
+						ngf-drag-over-class="dragover" 
+						ngf-multiple="true" 
+						ngf-allow-dir="true"
+						accept="image/*">Drop all images here or click to upload</div>
+					<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+					<ul style="clear:both;list-style-type: none;" ng-show="files.length > 0" class="response">
+						<li ng-repeat="f in files">
+							<img ngf-src="f" class="thumb" ngf-accept="'image/*'">
+						</li>
+					</ul>
+
+
+				</div>
+			</div>
+			
+			<div class="form-group col-md-12">
+				<input class="btn btn-default" type="submit" id="submitRecipe" name="submitRecipe" value="Submit">
+				&nbsp;
+				<label class="checkbox-inline">
+					<input type="checkbox" ng-model="published" id="published" name="published" value="Yes">
+					Publish
+				</label>
+			</div>	
+						
+		</form>
+	</div>
+	
+</div>

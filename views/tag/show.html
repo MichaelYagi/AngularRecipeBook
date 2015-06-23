@@ -1,0 +1,21 @@
+<div class="ng-scope">
+	<ng-include src="'views/navbar.html'"></ng-include>
+		
+	<h1 class="text-center">Tags {{tag.keyword}}</h1>
+	
+	<table class="table table-condensed" ng-show="tag.recipes.length > 0">
+		<thead>
+			<tr>
+				<th>Recipe</th>
+				<th>Author</th>
+			</tr>
+		</thead>
+		
+		<tbody ng-repeat="recipe in tag.recipes">
+			<tr>
+				<td><a ng-href="#/recipe/{{recipe.id}}">{{recipe.title}}</a></td>
+				<td><a ng-href="#/user/{{recipe.user_id}}/recipes">{{recipe.username}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,37 @@
+<!-- Navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container-fluid">
+
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/">Recipe Book</a>
+		</div>
+
+		<div id="navbar" class="collapse navbar-collapse">
+
+			<ul class="nav navbar-nav">
+				<li ng-show="{{loggedIn}}" ><a ng-href="#/dashboard">Dashboard</a></li>
+				<li ng-show="{{loggedIn}}" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recipes <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#/recipe/create">Add Recipe</a></li>
+						<li ng-show="recipe_id > 0"><a href="#/recipe/{{recipe_id}}/edit">Edit Recipe</a></li>
+					</ul>
+				</li>
+				<li><a href="#">About</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a ng-show="{{!loggedIn}}" ng-href="#/login">Login</a></li>
+				<li><a ng-show="{{loggedIn}}" ng-href="#/logout">Log Out</a></li>
+			</ul>
+
+		</div>
+
+	</div>
+</nav>

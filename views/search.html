@@ -1,0 +1,42 @@
+<div ng-controller="searchController" class="ng-scope">
+	<ng-include src="'views/navbar.html'"></ng-include>
+
+	<div class="container-fluid">
+		<div class="col-md-12">
+			<div class="centered row">
+				<form name="searchRecipeForm" class="form ng-pristine ng-valid" ng-submit="searchRecipe.submit(searchRecipeForm)">
+					<div class"form-group">
+						<div class="col-md-11">
+							<input class="form-control input-lg ng-pristine ng-untouched ng-valid" type="text" placeholder="Search Recipes" autofocus="" ng-model="keyword">
+						</div>
+						
+						<div class="col-md-1">
+							<input class="btn btn-default btn-lg" type="submit" id="submitSearch" name="submitSearch" value="Search">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<table class="table table-condensed" ng-show="recipes.length > 0">
+			<thead>
+				<tr>
+					<th>Recipe</th>
+					<th>Author</th>
+				</tr>
+			</thead>
+			
+			<tbody ng-repeat="recipe in recipes">
+				<tr>
+					<td>
+						<a ng-href="#/recipe/{{recipe.id}}">{{recipe.title}}</a>
+					</td>
+					
+					<td>
+						<a ng-href="#/user/{{recipe.user_id}}/recipes">{{recipe.username}}</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

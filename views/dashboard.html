@@ -1,0 +1,23 @@
+<div ng-controller="dashboardController" class="ng-scope">
+	<ng-include src="'views/navbar.html'"></ng-include>
+	
+	<h1>Hello {{user.username}}</h1>
+	
+	<table class="table table-condensed" ng-show="user.recipes.length > 0">
+		<thead>
+			<tr>
+				<th>Recipe</th>
+			</tr>
+		</thead>
+		
+		<tbody ng-repeat="recipe in user.recipes">
+			<tr ng-class="recipe.published==1? 'success' : ''">
+				<td>
+					<a ng-href="#/recipe/{{recipe.id}}">{{recipe.title}}</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+</div>
